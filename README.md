@@ -6,6 +6,9 @@ The files `fuzzyfinders.bash` and `fuzzyfinders.zsh` set up key bindings in `Bas
 - the path of a recently changed file (by default bound to `ctrl-x,m`), or
 - the path of a directory recently changed to or of a subdirectory in the current directory (by default bound to `ctrl-x,r`; uses [pazi](https://github.com/euank/pazi) in Bash).
 
+The file paths are listed among those inside the current working directory;
+in `ZSH`, optionally inside those after the path before the cursor position.
+
 For collecting all paths, whichever file searcher among `fd`, `rg` and `ag` is present, in this order, is used, before falling back to the mandatorily present command [`find`](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/find.html) (on a UNIX system, according to the `POSIX` standard).
 
 # Installation

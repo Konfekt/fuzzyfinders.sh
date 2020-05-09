@@ -142,7 +142,10 @@ if command -v cdr >/dev/null 2>&1; then
     local current_lbuffer="$LBUFFER"
     local current_rbuffer="$RBUFFER"
     if command -v fd >/dev/null 2>&1; then
-      local selected="$({ cdr -l | tr -s ' ' | cut -d ' ' -f 2-; command fd -L --type directory --color never 2>/dev/null; } | eval "$FUZZYFINDER --prompt 'cdr >'")"
+      local selected="$(
+        { cdr -l | tr -s ' ' | cut -d ' ' -f 2-;
+          command fd -L --type directory --no-ignore-vcs  --exclude .git/ --color never "" . 2>/dev/null; } |
+        eval "$FUZZYFINDER --prompt 'cdr >'")"
     else
       local selected="$({ cdr -l | tr -s ' ' | cut -d ' ' -f 2-; \
         command find -L \
@@ -187,28 +190,5 @@ fuzzyfinder-recent-files () {
     file=$(printf %q "$selected")
     BUFFER="${current_lbuffer}${file}${current_rbuffer}"
     CURSOR=$#BUFFER
-  fi
-}
-
-_fuzzyfinder-man-list-all() {
-  local parent dir file
-  local paths=("${(s/:/)$(man --all --location)}")
-  for parent in $paths; do
-    for dir in $(ls -1 "$parent"); do
-      local p="${parent}/${dir}"
-      if [ -d "$p" ]; then
-        IFS=$'\n' local lines=($(ls -1 "$p"))
-        for file in $lines; do
-          echo "${p}/${file}"
-        done
-      fi
-    done
-  done
-}
-
-fuzzyfinder-man() {
-  local selected=$(_fuzzyfinder-man-list-all | eval "$FUZZYFINDER --prompt 'man >'")
-  if [[ "$selected" != "" ]]; then
-    man "$selected"
   fi
 }

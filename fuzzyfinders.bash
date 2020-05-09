@@ -124,9 +124,9 @@ if command -v pazi >/dev/null 2>&1; then
   {
     if command -v fd >/dev/null 2>&1; then
       builtin typeset selected="$(
-      { pazi view | cut -f 2-; \
-        command fd -L --type directory --color never . 2>/dev/null; } \
-        | eval "$FUZZYFINDER" )"
+        { pazi view | cut -f 2-;
+          command fd -L --type directory --no-ignore-vcs --exclude .git/ --color never "" . 2>/dev/null; } |
+        eval "$FUZZYFINDER" )"
     else
       builtin typeset selected="$(
       { pazi view | cut -f 2-; \

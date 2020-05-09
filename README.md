@@ -1,4 +1,4 @@
-The files `fuzzyfinders.bash` and `fuzzyfinders.zsh` set up key bindings in `Bash` and `ZSH` to insert, right at the cursor position, a fuzzily found
+The shell script files `fuzzyfinders.bash` and `fuzzyfinders.zsh` set up key bindings in `Bash` and `ZSH` to insert, right at the cursor position, a fuzzily found
 
 - command line of the history (by default bound to `ctrl-x,h`),
 - file path (by default bound to `ctrl-x,f`).
@@ -9,7 +9,7 @@ The files `fuzzyfinders.bash` and `fuzzyfinders.zsh` set up key bindings in `Bas
 The file paths are listed among those inside the current working directory;
 in `ZSH`, optionally inside those after the path before the cursor position.
 
-For collecting all paths, whichever file searcher among `fd`, `rg` and `ag` is present, in this order, is used, before falling back to the mandatorily present command [`find`](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/find.html) (on a UNIX system, according to the `POSIX` standard).
+For collecting all paths, whichever file searcher among, in this order, [fd](https://github.com/sharkdp/fd), [ripgrep](https://github.com/BurntSushi/ripgrep) and [ag](https://github.com/ggreer/the_silver_searcher) is used, before falling back to the mandatorily present command [`find`](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/find.html) (on a UNIX system, according to the `POSIX` standard).
 
 # Installation
 

@@ -67,10 +67,12 @@ fuzzyfinder-dirs() {
 
   tokens=("${(z)current_lbuffer}")
   last_token=${tokens[-1]}
-  if [ -d "$last_token" ]; then
+  expanded_last_token="${last_token/\~/$HOME}"
+  if [ -d "$expanded_last_token" ]; then
     current_lbuffer="${tokens[1,-2]}"
     [ -n "$current_lbuffer" ] && current_lbuffer="$current_lbuffer "
-    cwd="$last_token"
+    cwd="$expanded_last_token"
+    cwd="$(realpath --relative-to . "$cwd")"
   else
     cwd=.
   fi
@@ -104,10 +106,12 @@ fuzzyfinder-files() {
 
   tokens=("${(z)current_lbuffer}")
   last_token=${tokens[-1]}
-  if [ -d "$last_token" ]; then
+  expanded_last_token="${last_token/\~/$HOME}"
+  if [ -d "$expanded_last_token" ]; then
     current_lbuffer="${tokens[1,-2]}"
     [ -n "$current_lbuffer" ] && current_lbuffer="$current_lbuffer "
-    cwd="$last_token"
+    cwd="$expanded_last_token"
+    cwd="$(realpath --relative-to . "$cwd")"
   else
     cwd=.
   fi

@@ -8,7 +8,7 @@ The shell scripts `fuzzyfinders.bash` and `fuzzyfinders.zsh` set up key bindings
 The file paths are listed among those inside the current working directory;
 in `ZSH`, optionally inside those after the path before the cursor position.
 
-The fuzzy finder can be set by the variable `$FUZZYFINDER` and defaults, in this order, to the first fuzzy finder found among [sk](https://github.com/lotabout/skim/), [fzf](https://github.com/junegunn/fzf/), [peco](https://github.com/peco/peco/) and [fzy](https://github.com/jhawthorn/fzy).
+The fuzzy finder can be set by the variable `$FUZZYFINDER` and defaults, in this order, to the first fuzzy finder found among [fzf](https://github.com/junegunn/fzf/), [peco](https://github.com/peco/peco/) and [fzy](https://github.com/jhawthorn/fzy).
 
 The functions `_compgen_path` (for files) and `_compgen_dir` (for directories) collect all paths and use by default the first file searcher among [fd](https://github.com/sharkdp/fd), [ripgrep](https://github.com/BurntSushi/ripgrep) and [ag](https://github.com/ggreer/the_silver_searcher), before falling back to the mandatorily present command [`find`](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/find.html) (on a UNIX system, according to the `POSIX` standard).
 
